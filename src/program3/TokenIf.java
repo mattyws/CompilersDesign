@@ -9,19 +9,7 @@ public class TokenIf extends Token {
 
 	@Override
 	public Token getToken() {
-		Token t = null;
-		switch (text.charAt(pos)) {
-		case 'f':			
-			t = new TokenIf(text, pos++);
-//			t.isValid(true);
-			break;
-		default:
-			if(sub == "if") {
-				
-			}
-			break;
-		}
-		return t;
+		
 	}
 
 	@Override
