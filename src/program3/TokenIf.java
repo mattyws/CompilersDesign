@@ -1,29 +1,22 @@
 package program3;
 
+import java.util.List;
+
 public class TokenIf extends Token {	
 	
-	public TokenIf(String text, int pos) {
-		this.text = text;
+	public TokenIf(String program, int pos, List<Token> tokenList) {
+		this.program = program;
 		this.pos = pos;
 	}
 
 	@Override
-	public Token getToken() {
-		Token t = null;
-		switch (text.charAt(pos)) {
-		case 'f':			
-			t = new TokenIf(text, pos++);
-//			t.isValid(true);
-			break;
-		default:
-			metodoLoko(sub, text, pos)
-			break;
-		}
-		return t;
+	public void getToken() {
+		
 	}
 
 	@Override
-	public void isValid(boolean value) {
-		this.valid = value;
+	public void next() {
+		// TODO Auto-generated method stub
+		
 	}
 }

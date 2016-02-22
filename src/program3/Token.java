@@ -2,8 +2,9 @@ package program3;
 
 public abstract class Token {
 	
-	public String text;
+	public String program;
 	public int pos;
+	public String value;
 	//public boolean valid;
 
 	public abstract void getToken();
