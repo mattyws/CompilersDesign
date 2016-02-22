@@ -13,7 +13,7 @@ public class Main {
 			break;
 		}
 		while(t.pos < text.length()){
-			t = t.getToken();
+			//t = t.getToken();
 		}
 	}
 }
