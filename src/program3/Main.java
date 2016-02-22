@@ -13,7 +13,10 @@ public class Main {
 			break;
 		}
 		while(t.pos < text.length()){
-			//t = t.getToken();
+			t.getToken();
+			if(t.isValid())
+				//add na lista
+			t = t.next();
 		}
 	}
 }
