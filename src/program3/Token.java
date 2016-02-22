@@ -6,6 +6,7 @@ public abstract class Token {
 	public int pos;
 	public boolean valid;
 
-	public abstract Token getToken();
+	public abstract void getToken();
 	public abstract void isValid(boolean value);
+	public abstract void next();
 }
