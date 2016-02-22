@@ -5,6 +5,7 @@ public abstract class Token {
 	public String program;
 	public int pos;
 	public String value;
+	public List<Token> tokenList;
 	//public boolean valid;
 
 	public abstract void getToken();
