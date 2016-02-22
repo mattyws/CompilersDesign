@@ -1,7 +1,7 @@
 // Teste
 
 package program3;
-
+/*
 public class EOF extends Token {
 
 	@Override
@@ -15,4 +15,4 @@ public class EOF extends Token {
 		
 	}
 
-}
+}*/
