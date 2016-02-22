@@ -15,8 +15,8 @@ Tokens
 
 	left_paren = '(';
 	right_paren = ')';
-	left_braq = '{';
-	right_braq = '}';
+	left_brac = '{';
+	right_brac = '}';
 
 	assign = '=';
 	compare = '==' | '<' | '>' | '<=' | '>=';
