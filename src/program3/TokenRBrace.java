@@ -7,7 +7,7 @@ public class TokenRBrace extends Token {
 	public TokenRBrace(String program, int pos) {
 		this.program = program;
 		this.pos = pos;
-		this.value = "{";
+		this.value = "}";
 	}
 
 	@Override
@@ -18,11 +18,49 @@ public class TokenRBrace extends Token {
 	@Override
 	public Token next() {
 		Token t = null;
-		if(program.charAt(pos)=='i'){
-			
+		char c = program.charAt(pos);
+		switch(c) {
+			case 'i':
+				t = new TokenIf(this.program, this.pos);
+				break;
+			case 'e':
+				t = new TokenElse(this.program, this.pos);
+				break;
+			case 'w':
+				t =  new TokenWhile(this.program, this.pos);
+				break;
+			case Character.isDigit(c):
+				t = new TokenFloatNum(this.program, this.pos);
+				break;
+			case Character.isAlphabetic(c):
+				t = new TokenIdentifier(this.program, this.pos);
+				break;
+			case '(':
+				t = new TokenLParenthesis(this.program, this.pos);
+				break;
+			case ')':
+				t = new TokenRParenthesis(this.program, this.pos);
+				break;
+			case '{':
+				t = new TokenLBrace(this.program, this.pos);
+				break;
+			case '}':
+				t = new TokenRBrace(this.program, this.pos);
+				break;
+			case '>' || '<' || '=':
+				t = new TokenCompare(this.program, this.pos);
+				break;
+			case '&' || '|':
+				t = new TokenBoolOp(this.program, this.pos);
+				break;
+			case '+' || '-' || '*' || '/' || '%':
+				t = new TokenArithOp(this.program, this.pos);
+				break;
+			default:
+				t = new TokenMisc(this.program, this.pos);
+				break;														
 		}
 		return t;
-		
 	}
 
 	@Override

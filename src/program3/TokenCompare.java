@@ -2,17 +2,18 @@ package program3;
 
 import java.util.List;
 
-public class TokenLParenthesis extends Token {	
+public class TokenCompare extends Token {	
 	
-	public TokenLParenthesis(String program, int pos) {
+	public TokenCompare(String program, int pos) {
 		this.program = program;
 		this.pos = pos;
-		this.value = "(";
+		this.value = program.charAt(pos-1);
 	}
 
 	@Override
 	public void getToken() {
 		this.setValid(true);
+		q1();
 	}
 
 	@Override
@@ -71,5 +72,16 @@ public class TokenLParenthesis extends Token {
 	@Override
 	public void setValid(boolean value) {
 		this.valid = value;
+	}
+
+	private void q1() {		
+		if(program.charAt(pos) == '=') {
+			this.value += program.charAt(pos);
+			pos++;
+		} else if(this.value == '=') {
+			this.setValid(false);
+			Token t = new TokenAssign(this.program, this.pos);
+			t.getToken();
+		}
 	}
 }

@@ -2,12 +2,12 @@ package program3;
 
 import java.util.List;
 
-public class TokenLParenthesis extends Token {	
+public class TokenArithOp extends Token {	
 	
-	public TokenLParenthesis(String program, int pos) {
+	public TokenArithOp(String program, int pos) {
 		this.program = program;
 		this.pos = pos;
-		this.value = "(";
+		this.value = program.charAt(pos-1);
 	}
 
 	@Override

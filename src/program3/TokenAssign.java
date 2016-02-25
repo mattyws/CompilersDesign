@@ -2,12 +2,12 @@ package program3;
 
 import java.util.List;
 
-public class TokenLParenthesis extends Token {	
+public class TokenAssign extends Token {	
 	
-	public TokenLParenthesis(String program, int pos) {
+	public TokenAssign(String program, int pos) {
 		this.program = program;
 		this.pos = pos;
-		this.value = "(";
+		this.value = "=";
 	}
 
 	@Override
@@ -72,4 +72,5 @@ public class TokenLParenthesis extends Token {
 	public void setValid(boolean value) {
 		this.valid = value;
 	}
+
 }
