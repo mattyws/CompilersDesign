@@ -1,23 +1,26 @@
 package program3;
 
 public class TokenSpace extends Token{
-
-	@Override
-	public void getToken() {
-		// TODO Auto-generated method stub
-		
+	
+	public TokenSpace(String program, int pos) {
+		this.program = program;
+		this.pos = pos;		
 	}
 
 	@Override
-	public void setValid(boolean value) {
-		// TODO Auto-generated method stub
-		
+	public void getToken() {
+		pos++;
+		setValid(true);
+	}
+
+	@Override
+	public void setValid(boolean value) {		
+		this.valid = value;
 	}
 
 	@Override
 	public boolean isValid() {
-		// TODO Auto-generated method stub
-		return false;
+		return valid;
 	}
 
 	@Override

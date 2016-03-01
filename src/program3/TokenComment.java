@@ -1,23 +1,43 @@
-package program3;
+8package program3;
 
 public class TokenComment extends Token{
-
-	@Override
-	public void getToken() {
-		// TODO Auto-generated method stub
-		
+	
+	public TokenComment(String program, int pos) {
+		this.program = program;
+		this.pos = pos;
+		setValid(false);
+		this.value = "/";
 	}
 
 	@Override
-	public void setValid(boolean value) {
-		// TODO Auto-generated method stub
-		
+	public void getToken() {
+		q1();
+	}
+
+	private void q1() {
+		if(program.charAt(pos) == '/'){
+			this.value += program.charAt(pos);
+			pos++;
+			setValid(true);
+			q2();
+		}
+	}
+
+	private void q2() {
+		while(program.charAt(pos) != '\n'){
+			this.value += program.charAt(pos);
+			pos++;
+		}		
+	}
+
+	@Override
+	public void setValid(boolean value) {		
+		this.valid = value;
 	}
 
 	@Override
 	public boolean isValid() {
-		// TODO Auto-generated method stub
-		return false;
+		return valid;
 	}
 
 	@Override
