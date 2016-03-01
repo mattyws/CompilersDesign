@@ -7,7 +7,7 @@ public class Lexer {
 	
 	public static void main(String[] args) {
 		Lexer l = new Lexer();
-		l.generateTokens("while( !(i == 12){ i=i+1;//a random comment\n}");
+		l.generateTokens("whil( !(i == 12){ i=i+1;//a random comment\n}");
 	}
 	
 	public void generateTokens(String program) {
@@ -32,7 +32,7 @@ public class Lexer {
 			} else if(program.charAt(pos) == '/'){
 				// could it be an comment				
 				if(program.charAt(pos+1) == '/'){
-					String commentValue = "/";
+					String commentValue = "";
 					while(program.charAt(pos) != ((char) 10) && program.charAt(pos) != ((char) 13)){
 						commentValue += program.charAt(pos);
 						pos++;
