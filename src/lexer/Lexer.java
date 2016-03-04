@@ -7,12 +7,12 @@ public class Lexer {
 	
 	public static void main(String[] args) {
 		Lexer l = new Lexer();
-		l.generateTokens("whil( !(i == 12){ i=i+1;//a random comment\n}");
+		l.generateTokens("while( !(i == 12){ i=i+1;//a random comment\n}");
 	}
 	
 	public void generateTokens(String program) {
 		int pos = 0;
-		List<String> tokens = new ArrayList<>();
+		List<Token> tokens = new ArrayList<>();
 		while(pos < program.length()){
 			String value = "";
 			while( !isTokenizeSymbol(program.charAt(pos)) ){
@@ -20,13 +20,13 @@ public class Lexer {
 				pos++;
 			}
 			if(!value.isEmpty())
-				tokens.add(value);
+				tokens.add(TokenClassifier.classify(value));
 			if( isCompareSymbol(program.charAt(pos)) ){
 				if(program.charAt(pos+1) == '='){
-					tokens.add(program.substring(pos, pos+2));
+					tokens.add(TokenClassifier.classify(program.substring(pos, pos+2)));
 					pos+=2;
 				} else {
-					tokens.add(String.valueOf(program.charAt(pos)));
+					tokens.add(TokenClassifier.classify(String.valueOf(program.charAt(pos))));
 					pos++;
 				}
 			} else if(program.charAt(pos) == '/'){
@@ -37,18 +37,19 @@ public class Lexer {
 						commentValue += program.charAt(pos);
 						pos++;
 					}
-					tokens.add(commentValue);
+					tokens.add(TokenClassifier.classify(commentValue));
 					pos++;
 				} 
 			} else {
-				tokens.add(String.valueOf(program.charAt(pos)));
+				tokens.add(TokenClassifier.classify(String.valueOf(program.charAt(pos))));
 				pos++;
 			}			
 		}
-		for(String s : tokens){
+		for(Token t : tokens){
+			System.out.print(t.getClass());
 			System.out.print("<");
-			System.out.print(s);
-			System.out.print("> ");
+			System.out.print(t.getToken());
+			System.out.println("> ");
 		}
 	}
 

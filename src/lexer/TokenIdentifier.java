@@ -2,9 +2,12 @@ package lexer;
 
 public class TokenIdentifier extends Token{
 
+	public TokenIdentifier(String token) {
+		this.token=token;
+	}
+
 	@Override
 	public String getToken() {
-		// TODO Auto-generated method stub
-		return null;
+		return token;
 	}
 }
