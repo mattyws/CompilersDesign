@@ -1,6 +1,6 @@
 package lexer;
 
-public class TokenClassifier {
+public class Classifier {
 
 	
 	public static final Token classify(String token){
@@ -33,14 +33,20 @@ public class TokenClassifier {
 		if(token.equals(";")){
 			return new TokenEndCommand(token);
 		}
+		if(token.equals(",")){
+			return new TokenComma(token);
+		}
 		if(token.equals(" ") || token.equals(String.valueOf((char)9)) || token.equals("\n")){
 			return new TokenSpace(token);
 		}
 		if(token.contains("//")){
 			return new TokenComment(token);
 		}
+		if(token.equalsIgnoreCase("true") || token.equalsIgnoreCase("false")){
+			return new TokenBoolean(token);
+		}
 		if(token.equalsIgnoreCase("int") || token.equalsIgnoreCase("float") || token.equalsIgnoreCase("boolean")
-				|| token.equalsIgnoreCase("char") || token.equalsIgnoreCase("string")){
+				|| token.equalsIgnoreCase("char") || token.equalsIgnoreCase("string") || token.equalsIgnoreCase("void")){
 			return new TokenType(token);
 		}
 		if(token.equalsIgnoreCase("while")){

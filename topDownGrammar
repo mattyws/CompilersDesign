@@ -1,0 +1,60 @@
+﻿Grammar
+Group Member: Lucas Menezes, Mattyws Grawe; Vitor Finati
+
+Program -> FunctionDecl* MainFunc
+FuncDecl -> Type id (Parameters) { Stm* }
+Parameters -> Type id ParametersList*
+	-> ø
+ParametersList -> , Type id
+	-> ø
+MainFunc -> void main() { Stm* }
+Stm -> { Stm* }
+	-> VarDecl
+	-> IdStm
+	-> WhileStm
+	-> IfStm
+VarDecl -> Type id VarDeclList*;
+VarDeclList -> ,id
+	-> ø
+Type -> int
+	-> boolean
+	-> float
+	-> char
+	-> string
+	-> void
+IdStm -> id IdDef
+IdDef -> = Exp;
+	-> (Parameters);
+Exp -> CompareExp Clist
+Clist -> & CompareExp Clist
+	-> | CompareExp Clist
+	-> ø
+CompareExp -> PlusMinusExp Plist
+Plist -> < PlusMinusExp Plist
+	-> < PlusMinusExp Plist
+	-> == PlusMinusExp Plist
+	-> <= PlusMinusExp Plist
+	-> >= PlusMinusExp Plist
+	-> ø
+PlusMinusExp -> DivisionExp Dlist
+Dlist -> + DivisionExp Dlist
+	-> - DivisionExp Dlist
+	-> ø
+DivisionExp -> MultExp Mlist
+Mlist -> / MultExp Mlist
+	-> % MultExp Mlist
+	-> ø
+MultExp -> NotExp Nlist
+Nlist -> * NotExp Nlist
+	-> ø
+NotExp -> ! NotExp
+	-> Factor
+Factor -> number
+	-> true
+	-> false
+	-> id
+	-> Exp
+WhileStm -> while (Exp) Stm
+IfStm -> if (Exp) Stm ElseStm
+ElseStm -> else Stm
+	-> ø
