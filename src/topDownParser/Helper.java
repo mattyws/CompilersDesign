@@ -71,7 +71,7 @@ public class Helper {
 				throw new ParserException(createMessage(tokenQueue.peek(), tokenClass));
 			}
 		} else {
-			throw new ParserException("Not enough token to consume");
+			throw new ParserException("Missing " + tokenClass);
 		}
 	}
 
@@ -85,7 +85,10 @@ public class Helper {
 	 * @return true if it's equal, false case not
 	 */
 	public static boolean is(Token token, Class tokenClass) {
-		return token.getClass() == tokenClass;
+		if(token != null)
+			return token.getClass() == tokenClass;
+		else 
+			return false;
 	}
 
 	/**
