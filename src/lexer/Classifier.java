@@ -40,6 +40,12 @@ public class Classifier {
 		if(token.equals(",")){
 			return new TokenComma(token);
 		}
+		if(token.equals("[")){
+			return new TokenLBracket(token);
+		}
+		if(token.equals("]")){
+			return new TokenRBracket(token);
+		}
 		if(token.equals(" ") || token.equals(String.valueOf((char)9)) || token.equals("\n")){
 			return new TokenSpace(token);
 		}
