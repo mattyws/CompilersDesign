@@ -7,6 +7,12 @@ import lexer.TokenIf;
 import lexer.TokenLParenthesis;
 import lexer.TokenRParenthesis;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class IfStm {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {

@@ -9,6 +9,12 @@ import lexer.TokenComment;
 import lexer.TokenMisc;
 import lexer.TokenSpace;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class Parser {
 	
 	public void parse(List<Token> tokens) throws ParserException{

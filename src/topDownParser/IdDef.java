@@ -8,6 +8,12 @@ import lexer.TokenEndCommand;
 import lexer.TokenLParenthesis;
 import lexer.TokenRParenthesis;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class IdDef {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {
@@ -17,8 +23,9 @@ public class IdDef {
 			Helper.eat(tokenQueue, TokenEndCommand.class);
 		} else if (Helper.is(tokenQueue.peek(), TokenLParenthesis.class)) {
 			Helper.eat(tokenQueue, TokenLParenthesis.class);
-			Parameters.parse(tokenQueue);
+			ExpParam.parse(tokenQueue);
 			Helper.eat(tokenQueue, TokenRParenthesis.class);
+			Helper.eat(tokenQueue, TokenEndCommand.class);
 		} else {
 			Helper.raiseError("Expecting a \"=\" or \"(\" got " + tokenQueue.peek().getToken());
 		}

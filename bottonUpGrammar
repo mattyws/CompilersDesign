@@ -1,39 +1,48 @@
-﻿Grammar
+Grammar
 Group Member: Lucas Menezes, Mattyws Grawe; Vitor Finati
 
-Program -> FunctionDecl* MainFunc
-FuncDecl -> Type id (Parameters) { Stm* }
+Program -> FunctionDeclList MainFunc
+FunctionDeclList -> FunctionDeclList FunctionDecl
+	-> ø
+FunctionDecl -> Type id (Parameters) { StmList }
 Parameters -> Type id ParametersList*
 	-> ø
 ParametersList -> , Type id
 	-> ø
-MainFunc -> void main() { Stm* }
+MainFunc -> void main() { StmList }
+StmList -> StmList Stm
+	-> ø
 Stm -> { Stm* }
 	-> VarDecl
 	-> IdStm
 	-> WhileStm
 	-> IfStm
-VarDecl -> Type id VarDeclList*;
-VarDeclList -> ,id
+VarDecl -> Type VarDeclList id DeclAssign;
+VarDeclList -> VarDeclList id DeclAssign
 	-> ø
-Type -> int
+DeclAssign -> = Exp
+	-> ø
+Type -> int 
 	-> boolean
 	-> float
 	-> char
 	-> string
 	-> void
+	-> int[]
+	-> boolean[]
+	-> float[]
+	-> char[]
+	-> string[]
 IdStm -> id IdDef
 IdDef -> = Exp;
 	-> (ExpParam);
-ExpParam -> Exp ExpParamList*
+ExpParam -> ExpParamList Exp
 	-> ø
-ExpParamList -> , Exp
+ExpParamList -> ExpParamList Exp,
 	-> ø
 Exp -> CompareExp Clist
 	-> stringValue
 	-> charValue
-FunctionExp -> Exp
-	-> ø
 Clist -> & CompareExp Clist
 	-> | CompareExp Clist
 	-> ø
@@ -56,8 +65,10 @@ MultExp -> NotExp Nlist
 Nlist -> * NotExp Nlist
 	-> ø
 NotExp -> ! NotExp
-	-> FunctionExp
-FunctionExp -> id(ExpParam)
+	-> FunctionExp ArrayExp 
+ArrayExp ->[Exp] // Add tokenBracket on lexer	
+	-> ø
+FunctionExp -> id(ExpParam)  // conflict
 	-> Factor
 Factor -> number
 	-> true

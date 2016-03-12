@@ -3,7 +3,7 @@ package topDownParser;
 import java.util.Queue;
 
 import lexer.Token;
-import lexer.TokenCompare;
+import lexer.TokenComma;
 
 /**
  * 
@@ -11,14 +11,11 @@ import lexer.TokenCompare;
  *
  */
 
-public class PList {
+public class ExpParamList {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {
-		if (Helper.is(tokenQueue.peek(), TokenCompare.class)) {
-			Helper.eat(tokenQueue, TokenCompare.class);
-			PlusMinusExp.parse(tokenQueue);
-			PList.parse(tokenQueue);
-		}
+		Helper.eat(tokenQueue, TokenComma.class);
+		Exp.parse(tokenQueue);
 	}
 
 }

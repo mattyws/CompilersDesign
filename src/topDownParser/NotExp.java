@@ -9,6 +9,12 @@ import lexer.TokenFloatNum;
 import lexer.TokenIdentifier;
 import lexer.TokenIntNum;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class NotExp {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {
@@ -19,7 +25,7 @@ public class NotExp {
 					|| Helper.is(tokenQueue.peek(), TokenFloatNum.class)
 					|| Helper.is(tokenQueue.peek(), TokenBoolean.class)
 					|| Helper.is(tokenQueue.peek(), TokenIdentifier.class)) {
-				Factor.parse(tokenQueue);
+				FunctionExp.parse(tokenQueue);
 			}
 	}
 

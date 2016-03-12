@@ -1,0 +1,16 @@
+int sum(int n) {
+	int a;
+    if(n < 10) {
+        return(n);    
+    }    
+    a = n%10;
+    return(a+sum(n/10));
+
+}
+
+void main() {  
+	sum(133);
+    sum(10978);
+    sum(1794321);
+
+}

@@ -8,6 +8,12 @@ import lexer.TokenLParenthesis;
 import lexer.TokenRParenthesis;
 import lexer.TokenWhile;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class WhileStm {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {

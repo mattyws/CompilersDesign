@@ -1,5 +1,9 @@
 package lexer;
-
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
 public class Classifier {
 
 	
@@ -41,6 +45,12 @@ public class Classifier {
 		}
 		if(token.contains("//")){
 			return new TokenComment(token);
+		}
+		if(token.contains("\'")){
+			return new TokenChar(token);
+		}
+		if(token.contains("\"")){
+			return new TokenString(token);
 		}
 		if(token.equalsIgnoreCase("true") || token.equalsIgnoreCase("false")){
 			return new TokenBoolean(token);

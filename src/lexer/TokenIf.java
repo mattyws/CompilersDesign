@@ -1,7 +1,11 @@
 package lexer;
 
 import java.util.List;
-
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
 public class TokenIf extends Token {
 
 	public TokenIf(String token) {

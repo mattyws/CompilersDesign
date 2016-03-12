@@ -1,5 +1,9 @@
 package lexer;
-
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
 public class TokenComma extends Token{
 
 	public TokenComma(String token) {

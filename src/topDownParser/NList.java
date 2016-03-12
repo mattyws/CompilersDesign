@@ -5,6 +5,12 @@ import java.util.Queue;
 import lexer.Token;
 import lexer.TokenArithOp;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class NList {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {

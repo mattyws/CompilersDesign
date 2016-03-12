@@ -12,6 +12,12 @@ import lexer.TokenRParenthesis;
 import lexer.TokenType;
 import lexer.TokenWhile;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class MainFunc {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {

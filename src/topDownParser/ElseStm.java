@@ -6,6 +6,12 @@ import lexer.Token;
 import lexer.TokenElse;
 import lexer.TokenIntNum;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class ElseStm {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {

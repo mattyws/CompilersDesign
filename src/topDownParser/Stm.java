@@ -10,6 +10,12 @@ import lexer.TokenRBrace;
 import lexer.TokenType;
 import lexer.TokenWhile;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class Stm {
 
 	public static void pase(Queue<Token> tokenQueue) throws ParserException {
@@ -30,7 +36,7 @@ public class Stm {
 		} else if (Helper.is(tokenQueue.peek(), TokenIf.class)) {
 			IfStm.parse(tokenQueue);
 		} else {
-			Helper.raiseError("Expecting \"(\", \"int\", \"boolean\", \"float\","
+			Helper.raiseError("Expecting \"{\", \"int\", \"boolean\", \"float\","
 					+ " \"char\", \"string\", a identifier, \"while\", \"if\", got " + tokenQueue.peek().getToken());
 		}
 	}

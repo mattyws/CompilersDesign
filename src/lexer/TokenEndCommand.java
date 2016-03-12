@@ -1,5 +1,9 @@
 package lexer;
-
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
 public class TokenEndCommand extends Token{
 	
 	public TokenEndCommand(String token) {

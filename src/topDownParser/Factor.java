@@ -8,6 +8,12 @@ import lexer.TokenFloatNum;
 import lexer.TokenIdentifier;
 import lexer.TokenIntNum;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class Factor {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {

@@ -6,6 +6,12 @@ import lexer.Token;
 import lexer.TokenIdentifier;
 import lexer.TokenType;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
 public class ParametersList {
 
 	public static void parse(Queue<Token> tokenQueue) throws ParserException {
