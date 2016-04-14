@@ -58,6 +58,9 @@ public class Classifier {
 		if(token.contains("\"")){
 			return new TokenString(token);
 		}
+		if(token.equalsIgnoreCase("main")){
+			return new TokenMain(token);
+		}
 		if(token.equalsIgnoreCase("true") || token.equalsIgnoreCase("false")){
 			return new TokenBoolean(token);
 		}

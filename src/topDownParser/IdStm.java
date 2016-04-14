@@ -4,6 +4,9 @@ import java.util.Queue;
 
 import lexer.Token;
 import lexer.TokenIdentifier;
+import treeNodes.NStatement;
+import treeNodes.exp.NIdentifier;
+import treeNodes.statements.NIdStatement;
 
 /**
  * 
@@ -13,9 +16,10 @@ import lexer.TokenIdentifier;
 
 public class IdStm {
 
-	public static void parse(Queue<Token> tokenQueue) throws ParserException {
-		Helper.eat(tokenQueue, TokenIdentifier.class);
-		IdDef.parse(tokenQueue);
+	public static NStatement parse(Queue<Token> tokenQueue) throws ParserException {
+		NIdentifier id = new NIdentifier(Helper.eat(tokenQueue, TokenIdentifier.class).getToken());
+		NStatement stm = IdDef.parse(tokenQueue, id);
+		return stm;
 	}
 
 }

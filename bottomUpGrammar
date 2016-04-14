@@ -1,0 +1,71 @@
+Begin -> Program $ 
+Program -> FunctionDeclList MainFunc
+FunctionDeclList -> FunctionDeclList FunctionDecl 
+FunctionDeclList ->  
+FunctionDecl -> Type id ( Parameters ) { StmList } 
+Parameters -> ParametersList Type id 
+Parameters ->  
+ParametersList -> ParametersList Type id , 
+ParametersList ->  
+MainFunc -> main ( ) { StmList } 
+StmList -> StmList Stm 
+StmList ->  
+Stm -> { StmList } 
+Stm -> VarDecl 
+Stm -> IdStm 
+Stm -> WhileStm 
+Stm -> IfStm
+VarDecl -> Type VarDeclList id DeclAssign ; 
+VarDeclList -> VarDeclList id DeclAssign , 
+VarDeclList ->  
+DeclAssign -> = Exp 
+DeclAssign ->  
+Type -> int 
+Type -> boolean 
+Type -> float 
+Type -> char 
+Type -> string 
+Type -> void 
+Type -> int [ ] 
+Type -> boolean [ ] 
+Type -> float [ ] 
+Type -> char [ ] 
+Type -> string [ ] 
+IdStm -> id IdDef 
+IdDef -> = Exp ; 
+IdDef -> ( ExpParam ) ; 
+ExpParam -> ExpParamList Exp 
+ExpParam ->  
+ExpParamList -> ExpParamList Exp , 
+ExpParamList ->  
+Exp -> Exp & Compare
+Exp -> Exp | Compare
+Exp -> Compare
+Compare -> Compare < PlusMinus
+Compare -> Compare <= PlusMinus
+Compare -> Compare > PlusMinus
+Compare -> Compare >= PlusMinus
+Compare -> Compare == PlusMinus
+Compare -> PlusMinus
+PlusMinus -> PlusMinus + Division
+PlusMinus -> PlusMinus - Division
+PlusMinus -> Division
+Division -> Division / Mult
+Division -> Division % Mult
+Division -> Mult
+Mult -> Mult * Not
+Mult -> Not
+Not -> ! Not
+Not -> Factor
+Factor -> number 
+Factor -> true 
+Factor -> false 
+Factor -> id
+Factor -> id ( ExpParam )
+Factor -> id [ Exp ]
+Factor -> stringValue 
+Factor -> charValue
+WhileStm -> while ( Exp ) { StmList }
+IfStm -> if ( Exp ) { StmList } ElseStm
+ElseStm -> else { StmList }
+ElseStm -> 

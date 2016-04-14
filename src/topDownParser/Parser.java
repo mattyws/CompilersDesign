@@ -8,6 +8,7 @@ import lexer.Token;
 import lexer.TokenComment;
 import lexer.TokenMisc;
 import lexer.TokenSpace;
+import treeNodes.NProgram;
 
 /**
  * 
@@ -20,7 +21,8 @@ public class Parser {
 	public void parse(List<Token> tokens) throws ParserException{
 		int pos = 0;
 		Queue<Token> tokenQueue = transform(tokens);
-		Program.parse(tokenQueue);
+		NProgram program = Program.parse(tokenQueue);
+		System.out.println("loko!");
 	}
 
 	/**

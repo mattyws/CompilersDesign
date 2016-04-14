@@ -4,6 +4,8 @@ import java.util.Queue;
 
 import lexer.Token;
 import lexer.TokenArithOp;
+import treeNodes.NExp;
+import treeNodes.exp.NMult;
 
 /**
  * 
@@ -13,12 +15,21 @@ import lexer.TokenArithOp;
 
 public class NList {
 
-	public static void parse(Queue<Token> tokenQueue) throws ParserException {
+	public static NExp parse(Queue<Token> tokenQueue) throws ParserException {
 		if (Helper.is(tokenQueue.peek(), TokenArithOp.class, "*")) {
 			Helper.eat(tokenQueue, TokenArithOp.class);
-			NotExp.parse(tokenQueue);
-			NList.parse(tokenQueue);
+			NMult mult = new NMult();
+			NExp exp = NotExp.parse(tokenQueue);
+			NExp exp2 = NList.parse(tokenQueue);
+			if(exp2 != null){
+				exp2.setL(exp);
+				mult.setR(exp2);
+			} else {
+				mult.setR(exp);
+			}
+			return mult;
 		}
+		return null;
 	}
 
 }

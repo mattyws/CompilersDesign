@@ -1,0 +1,97 @@
+// Students : Mattyws Grawe; Lucas Menezes; Vitor Finati
+Package lmv;
+Helpers
+	digit = ['0'..'9'];
+	digits = digit+;
+	letter = ['a'..'z'] | ['A'..'Z'];	
+	exp = ['e' + 'E'] ['+' + '-']? digits;
+	newline = [10 + 13];
+	quot = 34;
+	sing_quot = 39;
+Tokens
+	comment = '//' [[0..0xffff] - newline]* newline;
+	space = ' ' | 9 | newline;
+	
+	main = 'main';
+	while = 'while';
+	if = 'if';
+	else = 'else';
+	type_int = 'int';
+	type_bool = 'boolean'; 
+	type_float = 'float'; 
+	type_char = 'char'; 
+	type_string = 'string'; 
+	type_void = 'void';
+	true_value = 'true';
+	false_value = 'false';
+
+	left_paren = '(';
+	right_paren = ')';
+	left_brac = '{';
+	right_brac = '}';
+	left_brack = '[';
+	right_brack = ']';
+	semicolon = ';';
+	colon = ',';
+
+	assign = '=';
+	eq = '==';
+	lt = '<';
+	gt = '>';
+	le = '<=';
+	ge = '>=';
+	and = '&';
+	or = '|';
+	not = '!';
+	plus = '+';
+	minus = '-';
+	times ='*';
+	div = '/';
+	mod = '%';
+
+	identifier = letter(letter | digit)*;
+	int_num = digits;
+	float_num = (digits '.'? digits? | '.' digits) exp?;
+	string_value = quot (letter | space | digit)* quot;
+	char_value = sing_quot (letter | space | digit) sing_quot;
+
+	misc = [0..0xffff];
+	
+Ignored Tokens
+comment, space, misc;
+
+Productions
+program = function_decl_list main_function;
+function_decl_list = {has_function} function_decl_list function_decl | {null_function};
+function_decl = types identifier left_paren parameters right_paren left_brac stm_list right_brac;
+parameters = {has_parameters} parameters_list types identifier | {null_parameters};
+parameters_list = {has_more_parameters} parameters_list types identifier colon | {no_more_parameters};
+main_function = main left_paren right_paren left_brac stm_list right_brac;
+stm_list = {has_stm} stm_list stm | {no_more_stm};
+stm = {scoped_stm} left_brac stm_list right_brac | {var_declaration_stm} var_decl 
+	| {identifier_stm} id_stm | {while_decl_stm} while_stm | {if_decl_stm} if_stm;
+var_decl = types var_decl_list identifier decl_assign semicolon; 
+var_decl_list = {has_more_var} var_decl_list identifier decl_assign colon | {no_more_var}; 
+decl_assign = {has_decl_assign} assign expression; | {no_decl_assign};
+types = {int} type_int | {boolean} type_bool | {float} type_float
+	| {char} type_char | {string} type_string | {void} type_void
+	| {int_vector} type_int left_brack right_brack | {boolean_vector} type_bool left_brack right_brack
+	| {float_vector} type_float left_brack right_brack | {char_vector} type_char left_brack right_brack
+	| {string_vector} type_string left_brack right_brack; 
+id_stm = identifier id_definition;
+id_definition = {var_assign} assign expression semicolon | {function_call} left_paren exp_parameter right_paren semicolon;
+exp_parameter = {has_parameters} exp_param_list expression | {no_parameters};
+exp_param_list = {has_more_parameters} exp_param_list expression colon | {no_more_parameters};
+expression = {and_expr} expression and compare | {or_expr} expression or compare | {compare_down_expr} compare;
+compare = {lt_expr} compare lt plus_minus | {le_expr} compare le plus_minus | {gt_expr} compare gt plus_minus
+		| {ge_expr} compare ge plus_minus | {eq_expr} compare eq plus_minus | {plus_minus_down_expr} plus_minus;
+plus_minus = {plus_expr} plus_minus plus division | {minus_expr} plus_minus minus division | {division_down_expr} division;
+division = {div_expr} division div multiplication | {mod_expr} division mod multiplication | {mult_down_expr} multiplication;
+multiplication = {times_expr} multiplication times not_expression | {not_down_expr} not_expression ;
+not_expression = {not_expr} not expression | {factor_down_expr} factor;
+factor = {is_integer} int_num | {is_float} float_num | {is_string} string_value 
+		| {is_char} char_value | {is_bool_true} true_value | {is_bool_false} false_value | {is_identifier} identifier 
+		| {is_function_call} identifier left_paren exp_parameter right_paren | {is_array_call} identifier left_brack expression right_brack;
+while_stm = while left_paren expression right_paren left_brac stm_list right_brac;
+if_stm = if left_paren expression right_paren left_brac stm_list right_brac else_stm;
+else_stm = {has_else} else left_brac stm_list right_brac | {no_else_if};

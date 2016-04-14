@@ -7,6 +7,9 @@ import lexer.TokenIntNum;
 import lexer.TokenLParenthesis;
 import lexer.TokenRParenthesis;
 import lexer.TokenWhile;
+import treeNodes.NExp;
+import treeNodes.NStatement;
+import treeNodes.statements.NWhileStatement;
 
 /**
  * 
@@ -16,12 +19,14 @@ import lexer.TokenWhile;
 
 public class WhileStm {
 
-	public static void parse(Queue<Token> tokenQueue) throws ParserException {
+	public static NWhileStatement parse(Queue<Token> tokenQueue) throws ParserException {
 		Helper.eat(tokenQueue, TokenWhile.class);
 		Helper.eat(tokenQueue, TokenLParenthesis.class);
-		Exp.parse(tokenQueue);
+		NExp exp = Exp.parse(tokenQueue);
 		Helper.eat(tokenQueue, TokenRParenthesis.class);
-		Stm.pase(tokenQueue);
+		NStatement stm = Stm.pase(tokenQueue);
+		NWhileStatement whileStm = new NWhileStatement(exp, stm);
+		return whileStm;
 	}
 
 }

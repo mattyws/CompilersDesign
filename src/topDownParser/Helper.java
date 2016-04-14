@@ -45,11 +45,12 @@ public class Helper {
 	 * @param value
 	 *            the value that the next token in the queue have to be equal
 	 */
-	public static void eat(Queue<Token> tokenQueue, Class tokenClass, String value) throws ParserException {
+	public static Token eat(Queue<Token> tokenQueue, Class tokenClass, String value) throws ParserException {
 		if (tokenQueue.size() > 0) {
 			if (tokenQueue.peek().getClass() == tokenClass) {
-				if (tokenQueue.peek().getToken() == value) {
-					tokenQueue.poll();
+				if (tokenQueue.peek().getToken().equalsIgnoreCase(value)) {
+					System.out.print(tokenQueue.peek().getToken());
+					return tokenQueue.poll();
 				} else {
 					throw new ParserException(createMessage(tokenQueue.peek().getToken(), value));
 				}
@@ -69,10 +70,11 @@ public class Helper {
 	 * @param tokenClass
 	 * @throws ParserException 
 	 */
-	public static void eat(Queue<Token> tokenQueue, Class tokenClass) throws ParserException {
+	public static Token eat(Queue<Token> tokenQueue, Class tokenClass) throws ParserException {
 		if (tokenQueue.size() > 0) {
 			if (tokenQueue.peek().getClass() == tokenClass) {
-				tokenQueue.poll();
+				System.out.print(tokenQueue.peek().getToken());
+				return tokenQueue.poll();
 			} else {
 				throw new ParserException(createMessage(tokenQueue.peek(), tokenClass));
 			}

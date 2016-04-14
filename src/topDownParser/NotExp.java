@@ -8,6 +8,8 @@ import lexer.TokenBoolean;
 import lexer.TokenFloatNum;
 import lexer.TokenIdentifier;
 import lexer.TokenIntNum;
+import treeNodes.NExp;
+import treeNodes.exp.NNot;
 
 /**
  * 
@@ -17,16 +19,20 @@ import lexer.TokenIntNum;
 
 public class NotExp {
 
-	public static void parse(Queue<Token> tokenQueue) throws ParserException {
-			if (Helper.is(tokenQueue.peek(), TokenBoolOp.class, "!")) {
-				Helper.eat(tokenQueue, TokenBoolOp.class);
-				NotExp.parse(tokenQueue);
-			} else if (Helper.is(tokenQueue.peek(), TokenIntNum.class)
-					|| Helper.is(tokenQueue.peek(), TokenFloatNum.class)
-					|| Helper.is(tokenQueue.peek(), TokenBoolean.class)
-					|| Helper.is(tokenQueue.peek(), TokenIdentifier.class)) {
-				FunctionExp.parse(tokenQueue);
-			}
+	public static NExp parse(Queue<Token> tokenQueue) throws ParserException {
+		if (Helper.is(tokenQueue.peek(), TokenBoolOp.class, "!")) {
+			Helper.eat(tokenQueue, TokenBoolOp.class);
+			NNot not = new NNot();
+			NExp exp = Exp.parse(tokenQueue);
+			not.setL(exp);
+			return not;
+		} else if (Helper.is(tokenQueue.peek(), TokenIntNum.class) || Helper.is(tokenQueue.peek(), TokenFloatNum.class)
+				|| Helper.is(tokenQueue.peek(), TokenBoolean.class)
+				|| Helper.is(tokenQueue.peek(), TokenIdentifier.class)) {
+			NExp exp = Factor.parse(tokenQueue);
+			return exp;
+		}
+		return null;
 	}
 
 }

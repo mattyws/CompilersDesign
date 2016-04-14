@@ -2,19 +2,21 @@
 Group Member: Lucas Menezes, Mattyws Grawe; Vitor Finati
 
 Program -> FunctionDecl* MainFunc
-FuncDecl -> Type id (Parameters) { Stm* }
+FunctionDecl -> Type id (Parameters) { Stm* }
 Parameters -> Type id ParametersList*
 	-> ø
 ParametersList -> , Type id
 	-> ø
-MainFunc -> void main() { Stm* }
+MainFunc -> main() { Stm* }
 Stm -> { Stm* }
 	-> VarDecl
 	-> IdStm
 	-> WhileStm
 	-> IfStm
-VarDecl -> Type id VarDeclList*;
-VarDeclList -> ,id
+VarDecl -> Type id DeclAssign VarDeclList*;
+VarDeclList -> ,id DeclAssign
+	-> ø
+DeclAssign -> = Exp
 	-> ø
 Type -> int
 	-> boolean
@@ -22,24 +24,25 @@ Type -> int
 	-> char
 	-> string
 	-> void
-IdStm -> id IdDef
-IdDef -> = Exp;
-	-> (ExpParam);
+	-> int [ ] 
+ 	-> boolean [ ] 
+ 	-> float [ ] 
+ 	-> char [ ] 
+ 	-> string [ ]
+IdStm -> id IdDef 
+IdDef -> = Exp ; 
+	-> ( ExpParam ) ;  
 ExpParam -> Exp ExpParamList*
 	-> ø
 ExpParamList -> , Exp
 	-> ø
 Exp -> CompareExp Clist
-	-> stringValue
-	-> charValue
-FunctionExp -> Exp
-	-> ø
 Clist -> & CompareExp Clist
 	-> | CompareExp Clist
 	-> ø
 CompareExp -> PlusMinusExp Plist
 Plist -> < PlusMinusExp Plist
-	-> < PlusMinusExp Plist
+	-> > PlusMinusExp Plist
 	-> == PlusMinusExp Plist
 	-> <= PlusMinusExp Plist
 	-> >= PlusMinusExp Plist
@@ -55,15 +58,16 @@ Mlist -> / MultExp Mlist
 MultExp -> NotExp Nlist
 Nlist -> * NotExp Nlist
 	-> ø
-NotExp -> ! NotExp
-	-> FunctionExp
-FunctionExp -> id(ExpParam)
+NotExp -> ! Exp
 	-> Factor
-Factor -> number
-	-> true
-	-> false
-	-> id
-	-> Exp
+Factor -> number 
+ 	-> true 
+ 	-> false 
+ 	-> id
+ 	-> id ( ExpParam )
+ 	-> id [ Exp ]
+ 	-> stringValue 
+ 	-> charValue
 WhileStm -> while (Exp) Stm
 IfStm -> if (Exp) Stm ElseStm
 ElseStm -> else Stm

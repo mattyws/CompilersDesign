@@ -27,9 +27,9 @@ public class Main {
 
 //			br = new BufferedReader(new FileReader("./primes.lmv"));
 //			br = new BufferedReader(new FileReader("./fibo.lmv"));
-//			br = new BufferedReader(new FileReader("./digitSum.lmv"));
+			br = new BufferedReader(new FileReader("./digitSum.lmv"));
 //			br = new BufferedReader(new FileReader("./digitCount.lmv"));
-			br = new BufferedReader(new FileReader("./perfectDigit.lmv"));
+//			br = new BufferedReader(new FileReader("./perfectDigit.lmv"));
 
 			while ((sCurrentLine = br.readLine()) != null) {
 				program += sCurrentLine + "\n";

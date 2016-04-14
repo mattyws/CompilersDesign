@@ -74,10 +74,10 @@ public class Lexer {
 				pos++;
 			}			
 		}
-		for(Token t : tokens){
-			System.out.print(t.getClass() + ": ");
-			System.out.println(t.getToken());
-		}
+//		for(Token t : tokens){
+//			System.out.print(t.getClass() + ": ");
+//			System.out.println(t.getToken());
+//		}
 		return tokens;
 	}
 
@@ -87,8 +87,12 @@ public class Lexer {
 	}
 
 	private boolean isTokenizeSymbol(char c) {
-		String symbols = "\"\',;(){}=<>!&|+-*/% " + ((char) 10) + ((char) 13) + ((char) 9);
+		String symbols = "\"\',;[](){}=<>!&|+-*/% " + ((char) 10) + ((char) 13) + ((char) 9);
 		return symbols.indexOf(c) == -1 ? false : true;
+	}
+
+	public List<Token> returnUsableTokens(List<Token> tokens) {
+		return null;
 	}
 
 }

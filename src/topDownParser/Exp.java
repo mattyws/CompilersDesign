@@ -8,6 +8,7 @@ import lexer.TokenIdentifier;
 import lexer.TokenLParenthesis;
 import lexer.TokenRParenthesis;
 import lexer.TokenString;
+import treeNodes.NExp;
 
 /**
  * 
@@ -17,14 +18,14 @@ import lexer.TokenString;
 
 public class Exp {
 
-	public static void parse(Queue<Token> tokenQueue) throws ParserException {
-		if (Helper.is(tokenQueue.peek(), TokenString.class)) {
-			Helper.eat(tokenQueue, TokenString.class);
-		} else if (Helper.is(tokenQueue.peek(), TokenChar.class)) {
-			Helper.eat(tokenQueue, TokenChar.class);
+	public static NExp parse(Queue<Token> tokenQueue) throws ParserException {
+		NExp exp = CompareExp.parse(tokenQueue);
+		NExp exp2 = CList.parse(tokenQueue);
+		if(exp2 != null){
+			exp2.setL(exp);
+			return exp2;
 		} else {
-			CompareExp.parse(tokenQueue);
-			CList.parse(tokenQueue);
+			return exp;
 		}
 	}
 

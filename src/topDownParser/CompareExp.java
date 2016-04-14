@@ -3,6 +3,7 @@ package topDownParser;
 import java.util.Queue;
 
 import lexer.Token;
+import treeNodes.NExp;
 
 /**
  * 
@@ -12,9 +13,15 @@ import lexer.Token;
 
 public class CompareExp {
 
-	public static void parse(Queue<Token> tokenQueue) throws ParserException {
-		PlusMinusExp.parse(tokenQueue);
-		PList.parse(tokenQueue);
+	public static NExp parse(Queue<Token> tokenQueue) throws ParserException {
+		NExp exp = PlusMinusExp.parse(tokenQueue);
+		NExp exp2 = PList.parse(tokenQueue);
+		if(exp2 != null) {
+			exp2.setL(exp);
+			return exp2;
+		} else {
+			return exp;
+		}
 	}
 
 }

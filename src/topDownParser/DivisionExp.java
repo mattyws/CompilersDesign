@@ -3,6 +3,7 @@ package topDownParser;
 import java.util.Queue;
 
 import lexer.Token;
+import treeNodes.NExp;
 
 /**
  * 
@@ -12,9 +13,15 @@ import lexer.Token;
 
 public class DivisionExp {
 
-	public static void parse(Queue<Token> tokenQueue) throws ParserException {
-		MultExp.parse(tokenQueue);
-		MList.parse(tokenQueue);
+	public static NExp parse(Queue<Token> tokenQueue) throws ParserException {
+		NExp exp = MultExp.parse(tokenQueue);
+		NExp exp2 = MList.parse(tokenQueue);
+		if(exp2 != null) {
+			exp2.setL(exp);
+			return exp2;
+		} else {
+			return exp;
+		}
 	}
 
 }

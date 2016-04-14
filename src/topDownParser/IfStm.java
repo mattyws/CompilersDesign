@@ -6,6 +6,10 @@ import lexer.Token;
 import lexer.TokenIf;
 import lexer.TokenLParenthesis;
 import lexer.TokenRParenthesis;
+import treeNodes.NExp;
+import treeNodes.NStatement;
+import treeNodes.statements.NElseStatement;
+import treeNodes.statements.NIfStatement;
 
 /**
  * 
@@ -15,13 +19,15 @@ import lexer.TokenRParenthesis;
 
 public class IfStm {
 
-	public static void parse(Queue<Token> tokenQueue) throws ParserException {
+	public static NIfStatement parse(Queue<Token> tokenQueue) throws ParserException {
 		Helper.eat(tokenQueue, TokenIf.class);
 		Helper.eat(tokenQueue, TokenLParenthesis.class);
-		Exp.parse(tokenQueue);
+		NExp exp = Exp.parse(tokenQueue);
 		Helper.eat(tokenQueue, TokenRParenthesis.class);
-		Stm.pase(tokenQueue);
-		ElseStm.parse(tokenQueue);
+		NStatement stm = Stm.pase(tokenQueue);		
+		NElseStatement elseStm = ElseStm.parse(tokenQueue);
+		NIfStatement ifStm = new NIfStatement(exp, stm, elseStm);
+		return ifStm;
 	}
 
 }
