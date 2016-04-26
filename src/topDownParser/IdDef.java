@@ -5,7 +5,10 @@ import java.util.Queue;
 import lexer.Token;
 import lexer.TokenAssign;
 import lexer.TokenEndCommand;
+import lexer.TokenLBrace;
+import lexer.TokenLBracket;
 import lexer.TokenLParenthesis;
+import lexer.TokenRBrace;
 import lexer.TokenRParenthesis;
 import treeNodes.NExp;
 import treeNodes.NExpParam;
@@ -25,10 +28,19 @@ public class IdDef {
 	public static NStatement parse(Queue<Token> tokenQueue, NIdentifier id) throws ParserException {
 		if (Helper.is(tokenQueue.peek(), TokenAssign.class)) {
 			Helper.eat(tokenQueue, TokenAssign.class);
-			NExp exp = Exp.parse(tokenQueue);
-			Helper.eat(tokenQueue, TokenEndCommand.class);
-			NAssign assign = new NAssign(id, exp);
-			return assign;
+			if (Helper.is(tokenQueue.peek(), TokenLBrace.class)) {
+				Helper.eat(tokenQueue, TokenLBrace.class);
+				NExp exp = ArrayExpParam.parse(tokenQueue);
+				Helper.eat(tokenQueue, TokenRBrace.class);
+				NAssign assign = new NAssign(id, exp);
+				Helper.eat(tokenQueue, TokenEndCommand.class);
+				return assign;
+			} else {
+				NExp exp = Exp.parse(tokenQueue);
+				NAssign assign = new NAssign(id, exp);
+				Helper.eat(tokenQueue, TokenEndCommand.class);
+				return assign;
+			}
 		} else if (Helper.is(tokenQueue.peek(), TokenLParenthesis.class)) {
 			Helper.eat(tokenQueue, TokenLParenthesis.class);
 			NExpParam param = ExpParam.parse(tokenQueue);

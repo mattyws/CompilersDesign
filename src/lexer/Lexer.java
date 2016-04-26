@@ -26,7 +26,7 @@ public class Lexer {
 			// identifying the symbol, first test if it is an compare token
 			if( isCompareSymbol(program.charAt(pos)) ){
 				// se if have an equal after the char that we are
-				if(program.charAt(pos+1) == '='){
+				if(isCompareSymbol(program.charAt(pos+1))){
 					tokens.add(Classifier.classify(program.substring(pos, pos+2)));
 					pos+=2;
 				} else {

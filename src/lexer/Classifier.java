@@ -19,6 +19,9 @@ public class Classifier {
 				|| token.equals(">=")){
 			return new TokenCompare(token);
 		}
+		if(token.equals("=>")){
+			return new TokenKeyValue(token);
+		}
 		if(token.equals("=")){
 			return new TokenAssign(token);
 		}
@@ -53,6 +56,7 @@ public class Classifier {
 			return new TokenComment(token);
 		}
 		if(token.contains("\'")){
+			token = token.replace("\'", "");
 			return new TokenChar(token);
 		}
 		if(token.contains("\"")){
@@ -60,6 +64,9 @@ public class Classifier {
 		}
 		if(token.equalsIgnoreCase("main")){
 			return new TokenMain(token);
+		}
+		if(token.equalsIgnoreCase("return")){
+			return new TokenReturn(token);
 		}
 		if(token.equalsIgnoreCase("true") || token.equalsIgnoreCase("false")){
 			return new TokenBoolean(token);
@@ -70,6 +77,9 @@ public class Classifier {
 		}
 		if(token.equalsIgnoreCase("while")){
 			return new TokenWhile(token);
+		}
+		if(token.equalsIgnoreCase("when")){
+			return new TokenWhen(token);
 		}
 		if(token.equalsIgnoreCase("if")){
 			return new TokenIf(token);

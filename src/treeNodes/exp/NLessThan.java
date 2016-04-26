@@ -2,17 +2,24 @@ package treeNodes.exp;
 
 import treeNodes.NExp;
 
-public class NLesserThan extends NExp {
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
 
-	public NLesserThan(NExp l, NExp r) {
+
+public class NLessThan extends NExp {
+
+	public NLessThan(NExp l, NExp r) {
 		super(l, r);
 	}
 	
-	public NLesserThan(NExp r){
+	public NLessThan(NExp r){
 		super(r);
 	}
 	
-	public NLesserThan(){
+	public NLessThan(){
 		super();
 	}
 

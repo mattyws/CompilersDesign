@@ -20,7 +20,7 @@ public class MList {
 		if (Helper.is(tokenQueue.peek(), TokenArithOp.class, "/")) {
 			Helper.eat(tokenQueue, TokenArithOp.class);
 			NDiv div = new NDiv();
-			NExp exp = MultExp.parse(tokenQueue);
+			NExp exp = NotExp.parse(tokenQueue);
 			NExp exp2 = MList.parse(tokenQueue);
 			if(exp2 != null){
 				exp2.setL(exp);
@@ -33,7 +33,7 @@ public class MList {
 		if (Helper.is(tokenQueue.peek(), TokenArithOp.class, "%")) {
 			Helper.eat(tokenQueue, TokenArithOp.class);
 			NMod mod = new NMod();
-			NExp exp = MultExp.parse(tokenQueue);
+			NExp exp = NotExp.parse(tokenQueue);
 			NExp exp2 = MList.parse(tokenQueue);
 			if(exp2 != null){
 				exp2.setL(exp);

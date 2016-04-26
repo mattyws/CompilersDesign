@@ -49,7 +49,6 @@ public class Helper {
 		if (tokenQueue.size() > 0) {
 			if (tokenQueue.peek().getClass() == tokenClass) {
 				if (tokenQueue.peek().getToken().equalsIgnoreCase(value)) {
-					System.out.print(tokenQueue.peek().getToken());
 					return tokenQueue.poll();
 				} else {
 					throw new ParserException(createMessage(tokenQueue.peek().getToken(), value));
@@ -73,7 +72,6 @@ public class Helper {
 	public static Token eat(Queue<Token> tokenQueue, Class tokenClass) throws ParserException {
 		if (tokenQueue.size() > 0) {
 			if (tokenQueue.peek().getClass() == tokenClass) {
-				System.out.print(tokenQueue.peek().getToken());
 				return tokenQueue.poll();
 			} else {
 				throw new ParserException(createMessage(tokenQueue.peek(), tokenClass));

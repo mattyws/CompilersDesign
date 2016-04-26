@@ -7,6 +7,10 @@ import java.util.List;
 
 import lexer.Lexer;
 import lexer.Token;
+import treeNodes.NFunctionDecl;
+import treeNodes.NProgram;
+import treeNodes.SemanticException;
+import visitors.BuildTable;
 
 /**
  * 
@@ -25,11 +29,7 @@ public class Main {
 
 			String sCurrentLine;
 
-//			br = new BufferedReader(new FileReader("./primes.lmv"));
-//			br = new BufferedReader(new FileReader("./fibo.lmv"));
-			br = new BufferedReader(new FileReader("./digitSum.lmv"));
-//			br = new BufferedReader(new FileReader("./digitCount.lmv"));
-//			br = new BufferedReader(new FileReader("./perfectDigit.lmv"));
+			br = new BufferedReader(new FileReader("./TestTable.lmv"));
 
 			while ((sCurrentLine = br.readLine()) != null) {
 				program += sCurrentLine + "\n";
@@ -39,10 +39,14 @@ public class Main {
 			List<Token> tokens = l.generateTokens(program);
 			Parser parser = new Parser();
 			try {
-				parser.parse(tokens);
-				System.out.println("Program accepted");
+				NProgram prog = parser.parse(tokens);
+				BuildTable build = new BuildTable();
+				build.visit(prog);
+				build.printTables();
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch(SemanticException e) {
 				e.printStackTrace();
 			}
 

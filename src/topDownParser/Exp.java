@@ -5,7 +5,10 @@ import java.util.Queue;
 import lexer.Token;
 import lexer.TokenChar;
 import lexer.TokenIdentifier;
+import lexer.TokenLBrace;
+import lexer.TokenLBracket;
 import lexer.TokenLParenthesis;
+import lexer.TokenRBrace;
 import lexer.TokenRParenthesis;
 import lexer.TokenString;
 import treeNodes.NExp;
@@ -21,7 +24,7 @@ public class Exp {
 	public static NExp parse(Queue<Token> tokenQueue) throws ParserException {
 		NExp exp = CompareExp.parse(tokenQueue);
 		NExp exp2 = CList.parse(tokenQueue);
-		if(exp2 != null){
+		if (exp2 != null) {
 			exp2.setL(exp);
 			return exp2;
 		} else {

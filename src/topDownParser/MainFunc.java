@@ -13,6 +13,7 @@ import lexer.TokenMain;
 import lexer.TokenRBrace;
 import lexer.TokenRParenthesis;
 import lexer.TokenType;
+import lexer.TokenWhen;
 import lexer.TokenWhile;
 import treeNodes.NMainFunc;
 import treeNodes.NStatement;
@@ -35,7 +36,7 @@ public class MainFunc {
 		List<NStatement> statements = new ArrayList<>();
 		while (Helper.is(tokenQueue.peek(), TokenLBrace.class) || Helper.is(tokenQueue.peek(), TokenType.class)
 				|| Helper.is(tokenQueue.peek(), TokenIdentifier.class) || Helper.is(tokenQueue.peek(), TokenWhile.class)
-				|| Helper.is(tokenQueue.peek(), TokenIf.class)) {
+				|| Helper.is(tokenQueue.peek(), TokenIf.class) || Helper.is(tokenQueue.peek(), TokenWhen.class)) {
 			NStatement statement = Stm.pase(tokenQueue);
 			statements.add(statement);
 		}

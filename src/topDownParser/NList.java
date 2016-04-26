@@ -19,7 +19,7 @@ public class NList {
 		if (Helper.is(tokenQueue.peek(), TokenArithOp.class, "*")) {
 			Helper.eat(tokenQueue, TokenArithOp.class);
 			NMult mult = new NMult();
-			NExp exp = NotExp.parse(tokenQueue);
+			NExp exp = DivisionExp.parse(tokenQueue);
 			NExp exp2 = NList.parse(tokenQueue);
 			if(exp2 != null){
 				exp2.setL(exp);

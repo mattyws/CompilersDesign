@@ -18,11 +18,11 @@ import treeNodes.NProgram;
 
 public class Parser {
 	
-	public void parse(List<Token> tokens) throws ParserException{
+	public NProgram parse(List<Token> tokens) throws ParserException{
 		int pos = 0;
 		Queue<Token> tokenQueue = transform(tokens);
 		NProgram program = Program.parse(tokenQueue);
-		System.out.println("loko!");
+		return program;
 	}
 
 	/**

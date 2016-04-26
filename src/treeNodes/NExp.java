@@ -1,5 +1,12 @@
 package treeNodes;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
+
 public class NExp extends Node{
 
 	public NExp l, r;

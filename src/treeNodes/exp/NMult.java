@@ -2,6 +2,13 @@ package treeNodes.exp;
 
 import treeNodes.NExp;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
+
 public class NMult extends NExp {
 
 	public NMult(NExp l, NExp r) {

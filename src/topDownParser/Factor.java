@@ -44,14 +44,14 @@ public class Factor {
 			return new NBoolean(Boolean.valueOf(bool.getToken()));
 		} else if (Helper.is(tokenQueue.peek(), TokenIdentifier.class)) {
 			TokenIdentifier tId = (TokenIdentifier) Helper.eat(tokenQueue, TokenIdentifier.class);
-			if(Helper.is(tokenQueue.peek(), TokenLBracket.class)){
+			if (Helper.is(tokenQueue.peek(), TokenLBracket.class)) {
 				Helper.eat(tokenQueue, TokenLBracket.class);
 				NExp exp = Exp.parse(tokenQueue);
 				Helper.eat(tokenQueue, TokenRBracket.class);
-				NArrayCall call = new NArrayCall(exp);
+				NArrayCall call = new NArrayCall(new NIdentifier(tId.getToken()), exp);
 				return call;
 			}
-			if(Helper.is(tokenQueue.peek(), TokenLParenthesis.class)){
+			if (Helper.is(tokenQueue.peek(), TokenLParenthesis.class)) {
 				Helper.eat(tokenQueue, TokenLParenthesis.class);
 				NExpParam param = ExpParam.parse(tokenQueue);
 				Helper.eat(tokenQueue, TokenRParenthesis.class);
@@ -60,12 +60,17 @@ public class Factor {
 			}
 			NIdentifier nId = new NIdentifier(tId.getToken());
 			return nId;
-		} else if(Helper.is(tokenQueue.peek(), TokenString.class)){
+		} else if (Helper.is(tokenQueue.peek(), TokenString.class)) {
 			TokenString string = (TokenString) Helper.eat(tokenQueue, TokenString.class);
 			return new NString(string.getToken());
+		} else if (Helper.is(tokenQueue.peek(), TokenLParenthesis.class)) {
+			Helper.eat(tokenQueue, TokenLParenthesis.class);
+			NExp exp = Exp.parse(tokenQueue);
+			Helper.eat(tokenQueue, TokenRParenthesis.class);
+			return exp;
 		} else {
 			TokenChar tChar = (TokenChar) Helper.eat(tokenQueue, TokenChar.class);
-			if(tChar.getToken().length() > 1) {
+			if (tChar.getToken().length() > 1) {
 				throw new ParserException("Invalid character constant");
 			}
 			return new NChar(tChar.getToken().charAt(0));

@@ -14,7 +14,7 @@ import treeNodes.NExp;
 public class MultExp {
 
 	public static NExp parse(Queue<Token> tokenQueue) throws ParserException {
-		NExp exp = NotExp.parse(tokenQueue);
+		NExp exp = DivisionExp.parse(tokenQueue);
 		NExp exp2 = NList.parse(tokenQueue);
 		if(exp2 != null) {
 			exp2.setL(exp);

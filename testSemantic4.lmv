@@ -1,0 +1,7 @@
+main() { 
+
+int a, into; a=2; 
+
+if(!(a>=1)){into=a*2;} 
+
+}

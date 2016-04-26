@@ -11,10 +11,10 @@ import treeNodes.NExp;
  *
  */
 
-public class PlusMinusExp {
+public class MinusExp {
 
 	public static NExp parse(Queue<Token> tokenQueue) throws ParserException {
-		NExp exp = DivisionExp.parse(tokenQueue);
+		NExp exp = MultExp.parse(tokenQueue);
 		NExp exp2 = DList.parse(tokenQueue);
 		if(exp2 != null) {
 			exp2.setL(exp);

@@ -14,7 +14,7 @@ import treeNodes.NExp;
 public class CompareExp {
 
 	public static NExp parse(Queue<Token> tokenQueue) throws ParserException {
-		NExp exp = PlusMinusExp.parse(tokenQueue);
+		NExp exp = PlusExp.parse(tokenQueue);
 		NExp exp2 = PList.parse(tokenQueue);
 		if(exp2 != null) {
 			exp2.setL(exp);

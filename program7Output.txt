@@ -1,0 +1,39 @@
+sum
+fac2 : Variable type : int
+fac1 : Variable type : int
+
+minus
+minuend : Variable type : int
+diff : Variable type : int
+subtrahend : Variable type : int
+
+mult
+product : Variable type : float
+fac2 : Variable type : float
+fac1 : Variable type : float
+
+div
+quotient : Variable type : float
+divisor : Variable type : float
+dividend : Variable type : float
+
+scope1
+sum : Variable type : int
+
+scope2
+p : Variable type : float
+a : Variable type : float
+q : Variable type : float
+b : Variable type : float
+
+main
+a : Variable type : int
+b : Variable type : int
+diff : Variable type : int
+
+program
+div : Method type : float
+minus : Method type : int
+mult : Method type : float
+sum : Method type : int
+main : Method type : void

@@ -8,6 +8,13 @@ import treeNodes.NStatement;
 import treeNodes.Node;
 import treeNodes.exp.NIdentifier;
 
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
+
+
 public class NMethodCall extends NStatement {
 	public NIdentifier id;
 	public NExpParam parameters;

@@ -12,7 +12,7 @@ import treeNodes.types.NArrayCharType;
 import treeNodes.types.NArrayFloatType;
 import treeNodes.types.NArrayIntType;
 import treeNodes.types.NArrayStringType;
-import treeNodes.types.NBooleanTrueType;
+import treeNodes.types.NBooleanType;
 import treeNodes.types.NCharType;
 import treeNodes.types.NFloatType;
 import treeNodes.types.NIntType;
@@ -43,7 +43,7 @@ public class Type {
 			return new NFloatType();
 		}
 		if(token.getToken().equalsIgnoreCase("boolean")){
-			return new NBooleanTrueType();
+			return new NBooleanType();
 		}
 		if(token.getToken().equalsIgnoreCase("char")){
 			return new NCharType();
@@ -64,7 +64,7 @@ public class Type {
 		if(type.getClass() == NFloatType.class){
 			return new NArrayFloatType();
 		}
-		if(type.getClass() == NBooleanTrueType.class){
+		if(type.getClass() == NBooleanType.class){
 			return new NArrayBooleanType();
 		}
 		if(type.getClass() == NCharType.class){

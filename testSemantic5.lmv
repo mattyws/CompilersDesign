@@ -1,0 +1,37 @@
+int minus(int minuend, int subtrahend) {
+	int diff;
+	diff = minuend - subtrahend;
+	return (diff);
+}
+
+int sum(int fac1, int fac2) {
+	return (fac1 + fac2);
+}
+
+float mult(float fac1, float fac2) {
+	float product;
+	product = fac1 * fac2;
+	return (product);
+}
+
+float div(float dividend, float divisor) {
+	float quotient;
+	quotient = dividend / divisor;
+	return (quotient);
+}
+
+
+main() {
+	int a, b;
+	{
+		int sum;
+		sum = sun(a, b);
+	}
+	int diff;
+	diff = minus(a, b);
+	{
+		float a, b, p, q;
+		p = mult(a, b);
+		q = div(a, b);
+	}
+}

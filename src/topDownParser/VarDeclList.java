@@ -24,8 +24,10 @@ public class VarDeclList {
 		if (Helper.is(tokenQueue.peek(), TokenComma.class)) {
 			Helper.eat(tokenQueue, TokenComma.class);
 			NIdentifier id = new NIdentifier(Helper.eat(tokenQueue, TokenIdentifier.class).getToken());
-			NExp exp = DeclAssign.parse(tokenQueue);			
-			NAssign assign = new NAssign(id, exp);
+			NExp exp = DeclAssign.parse(tokenQueue);
+			NAssign assign = null;
+			if(exp != null)
+				assign = new NAssign(id, exp);
 			NVariable var = new NVariable(type, id, assign);
 			return var;
 		}

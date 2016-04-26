@@ -5,9 +5,12 @@ import java.util.Queue;
 import lexer.Token;
 import lexer.TokenBoolOp;
 import lexer.TokenBoolean;
+import lexer.TokenChar;
 import lexer.TokenFloatNum;
 import lexer.TokenIdentifier;
 import lexer.TokenIntNum;
+import lexer.TokenLParenthesis;
+import lexer.TokenString;
 import treeNodes.NExp;
 import treeNodes.exp.NNot;
 
@@ -27,8 +30,9 @@ public class NotExp {
 			not.setL(exp);
 			return not;
 		} else if (Helper.is(tokenQueue.peek(), TokenIntNum.class) || Helper.is(tokenQueue.peek(), TokenFloatNum.class)
-				|| Helper.is(tokenQueue.peek(), TokenBoolean.class)
-				|| Helper.is(tokenQueue.peek(), TokenIdentifier.class)) {
+				|| Helper.is(tokenQueue.peek(), TokenBoolean.class) || Helper.is(tokenQueue.peek(), TokenChar.class) 
+				|| Helper.is(tokenQueue.peek(), TokenString.class) || Helper.is(tokenQueue.peek(), TokenIdentifier.class)
+				|| Helper.is(tokenQueue.peek(), TokenLParenthesis.class)) {
 			NExp exp = Factor.parse(tokenQueue);
 			return exp;
 		}

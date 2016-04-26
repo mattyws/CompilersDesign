@@ -1,0 +1,37 @@
+TestTable.lmv
+Program successfully checked.
+
+TestTable2.lmv
+
+treeNodes.SemanticException: Return type mismatch on minus
+	at visitors.TypeChecker.visit(TypeChecker.java:79)
+	at visitors.TypeChecker.visit(TypeChecker.java:64)
+	at Main.main(Main.java:49)
+	
+	
+TestTable3.lmv
+
+
+treeNodes.SemanticException: Return type mismatch on sum
+	at visitors.TypeChecker.visit(TypeChecker.java:79)
+	at visitors.TypeChecker.visit(TypeChecker.java:64)
+	at Main.main(Main.java:49)
+	
+TestTable4.lmv
+
+treeNodes.SemanticException: Assigning float to a variable int
+	at visitors.TypeChecker.visit(TypeChecker.java:162)
+	at visitors.TypeChecker.visit(TypeChecker.java:75)
+	at visitors.TypeChecker.visit(TypeChecker.java:64)
+	at Main.main(Main.java:49)
+	
+TestTable5.lmv
+
+treeNodes.SemanticException: Method sun does not exist!
+	at visitors.TypeChecker.visit(TypeChecker.java:389)
+	at visitors.TypeChecker.typeCheck(TypeChecker.java:658)
+	at visitors.TypeChecker.visit(TypeChecker.java:159)
+	at visitors.TypeChecker.visit(TypeChecker.java:249)
+	at visitors.TypeChecker.visit(TypeChecker.java:119)
+	at visitors.TypeChecker.visit(TypeChecker.java:66)
+	at Main.main(Main.java:49)

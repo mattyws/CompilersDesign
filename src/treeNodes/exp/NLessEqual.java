@@ -2,18 +2,25 @@ package treeNodes.exp;
 
 import treeNodes.NExp;
 
-public class NLesserEqual extends NExp {
+/**
+ * 
+ * @author Lucas Menezes, Mattyws Grawe, Vitor Finati
+ *
+ */
 
-	public NLesserEqual(NExp l, NExp r) {
+
+public class NLessEqual extends NExp {
+
+	public NLessEqual(NExp l, NExp r) {
 		super(l, r);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public NLesserEqual(NExp r){
+	public NLessEqual(NExp r){
 		super(r);
 	}
 	
-	public NLesserEqual(){
+	public NLessEqual(){
 		super();
 	}
 
